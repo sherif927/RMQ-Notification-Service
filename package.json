@@ -1,0 +1,22 @@
+{
+  "name": "notification-api",
+  "version": "1.0.0",
+  "description": "Notification Service in the trial e-commerce website",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/main.ts"
+  },
+  "author": "Sherif Amr",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/amqplib": "^0.5.13",
+    "@types/node": "^14.0.14",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.6",
+    "inversify": "^5.0.1",
+    "reflect-metadata": "^0.1.13"
+  }
+}
