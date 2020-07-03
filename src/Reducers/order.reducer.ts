@@ -5,6 +5,7 @@ import { OrderEvent } from "../Events/order.event";
 import { MailHelper } from "../Notifiers/MailNotifications/mail.helper";
 import { FirebaseHelper } from "../Notifiers/PushNotifications/firebase.helper";
 import { SmsHelper } from "../Notifiers/SmsNotifications/sms.helper";
+import { EventType } from "../Events/event.type";
 
 @injectable()
 export class OrderReducer implements IReducer<OrderEvent>{
@@ -22,6 +23,13 @@ export class OrderReducer implements IReducer<OrderEvent>{
     this.smsHelper = smsHelper;
   }
 
-  handleMessage(event: OrderEvent): void { }
+  handleMessage(event: OrderEvent): void {
+    switch (event.type) {
+      case EventType.Created: break;
+      case EventType.Updated: break;
+      case EventType.Deleted: break;
+      default: break;
+    }
+  }
 
 }
