@@ -1,5 +1,5 @@
 export enum EventType {
-  UserCreated = 1,
-  OrderCreated = 2,
-  OrderUpdated = 3
+  Created = 1,
+  Updated = 2,
+  Deleted = 3
 }

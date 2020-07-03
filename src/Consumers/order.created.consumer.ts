@@ -4,6 +4,8 @@ import Identifiers from '../Constants/identifiers';
 import { RabbitMQTemplate } from "../RabbitMQ/rabbitmq.template";
 import { OrderReducer } from "../Reducers/order.reducer";
 import { ConsumeMessage } from "amqplib";
+import { OrderEvent } from "../Events/order.event";
+import { EventType } from "../Events/event.type";
 
 @injectable()
 export class OrderCreatedConsumer implements IConsumer {
@@ -24,8 +26,7 @@ export class OrderCreatedConsumer implements IConsumer {
   }
 
   onOrderCreated(message: ConsumeMessage): void {
-    //TODO map message to eventObj then, pass to reducer
-    //@example this.userReducer.handleMessage(new Event(message));
+    this.orderReducer.handleMessage(new OrderEvent(message, EventType.Created));
   }
 }
 

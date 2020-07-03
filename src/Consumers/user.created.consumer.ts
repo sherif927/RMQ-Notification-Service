@@ -4,6 +4,8 @@ import { injectable, postConstruct, inject, named } from "inversify";
 import { ConsumeMessage, Channel } from 'amqplib';
 import { UserReducer } from "../Reducers/user.reducer";
 import { RabbitMQTemplate } from "../RabbitMQ/rabbitmq.template";
+import { UserEvent } from "../Events/user.event";
+import { EventType } from "../Events/event.type";
 
 @injectable()
 export class UserCreatedConsumer implements IConsumer {
@@ -24,8 +26,7 @@ export class UserCreatedConsumer implements IConsumer {
   }
 
   onUserCreated(message: ConsumeMessage): void {
-    //TODO map message to eventObj then, pass to reducer
-    //@example this.userReducer.handleMessage(new Event(message));
+    this.userReducer.handleMessage(new UserEvent(message, EventType.Created));
   }
 
 }

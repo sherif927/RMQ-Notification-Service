@@ -1,7 +1,9 @@
 import { ConsumeMessage } from "amqplib";
 import { EventType } from "./event.type";
+import { BaseEvent } from "./base.event";
 
-export class OrderEvent {
-  constructor(message: ConsumeMessage) { }
-  type: EventType;
+export class OrderEvent extends BaseEvent {
+  constructor(message: ConsumeMessage, type: EventType) {
+    super(message, type);
+  }
 }
