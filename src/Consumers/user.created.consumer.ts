@@ -22,7 +22,7 @@ export class UserCreatedConsumer implements IConsumer {
 
   @postConstruct()
   initializeConsumer(): Promise<void> {
-    return this.rmqtemp.registerListener({ name: 'user_created' }, this.onUserCreated.bind(this));
+    return this.rmqtemp.registerListener('user_created', this.onUserCreated.bind(this));
   }
 
   onUserCreated(message: ConsumeMessage): void {

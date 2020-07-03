@@ -22,7 +22,7 @@ export class OrderUpdatedConsumer implements IConsumer {
 
   @postConstruct()
   initializeConsumer(): Promise<void> {
-    return this.rmqtemp.registerListener({ name: 'order_updated' }, this.onOrderUpdated.bind(this));
+    return this.rmqtemp.registerListener('order_updated', this.onOrderUpdated.bind(this));
   }
 
   onOrderUpdated(message: ConsumeMessage): void {
