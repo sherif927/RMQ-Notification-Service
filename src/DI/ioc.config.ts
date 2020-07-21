@@ -20,12 +20,16 @@ import { RabbitMQTemplate } from "../RabbitMQ/rabbitmq.template";
 import { UserEvent } from "../Events/user.event";
 import { OrderEvent } from "../Events/order.event";
 import { OrderReducer } from "../Reducers/order.reducer";
+import { ILogger } from "../Interfaces/ILogger";
+import { Logger } from "../Utils/Logger";
 
 
 let container = new Container();
 
-// @example 
-// container.bind<IType>(SERVICE_IDENTIFIER.TYPE_IDENTIFIER).to(TYPE).whenTargetNamed(TAG.TYPE);
+/* 
+ @example 
+ container.bind<IType>(SERVICE_IDENTIFIER.TYPE_IDENTIFIER).to(TYPE).whenTargetNamed(TAG.TYPE);
+ */
 
 
 container.bind<IApplication>(Identifiers.APPLICATION).to(Application);
@@ -38,6 +42,7 @@ container.bind<IHelper>(Identifiers.HELPER).to(MailHelper).whenTargetNamed("mail
 container.bind<IHelper>(Identifiers.HELPER).to(SmsHelper).whenTargetNamed("sms");
 container.bind<IHelper>(Identifiers.HELPER).to(FirebaseHelper).whenTargetNamed("fcm");
 container.bind<IQueueTemplate>(Identifiers.QUEUE).to(RabbitMQTemplate);
+container.bind<ILogger>(Identifiers.LOGGER).to(Logger);
 
 
 

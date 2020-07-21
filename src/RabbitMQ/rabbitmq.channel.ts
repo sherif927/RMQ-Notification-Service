@@ -8,7 +8,7 @@ import { Channel } from "amqplib";
  * @class RabbitMQChannel
  */
 export class RabbitMQChannel {
-  private readonly channel: Channel;
+  private channel: Channel;
   private static instance: RabbitMQChannel;
 
   private constructor(channel: Channel) {
@@ -17,6 +17,10 @@ export class RabbitMQChannel {
 
   public getChannel(): Channel {
     return this.channel;
+  }
+
+  public setChannel(channel: Channel): void {
+    this.channel = channel;
   }
 
   public static getInstance(value?: Channel): RabbitMQChannel {

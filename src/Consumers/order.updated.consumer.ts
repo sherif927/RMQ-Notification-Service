@@ -6,6 +6,7 @@ import { OrderReducer } from "../Reducers/order.reducer";
 import { ConsumeMessage } from "amqplib";
 import { OrderEvent } from "../Events/order.event";
 import { EventType } from "../Events/event.type";
+import { log } from "../Utils/logging.decorator";
 
 @injectable()
 export class OrderUpdatedConsumer implements IConsumer {
@@ -25,7 +26,9 @@ export class OrderUpdatedConsumer implements IConsumer {
     return this.rmqtemp.registerListener('order_updated', this.onOrderUpdated.bind(this));
   }
 
+  @log()
   onOrderUpdated(message: ConsumeMessage): void {
+    console.log(message.content.toString());
     this.orderReducer.handleMessage(new OrderEvent(message, EventType.Updated));
   }
 }

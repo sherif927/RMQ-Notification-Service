@@ -4,19 +4,20 @@ import { injectable, inject, named, postConstruct } from "inversify";
 import { UserCreatedConsumer } from "./Consumers/user.created.consumer";
 import { OrderUpdatedConsumer } from "./Consumers/order.updated.consumer";
 import { OrderCreatedConsumer } from "./Consumers/order.created.consumer";
+import IConsumer from "./Interfaces/IConsumer";
 
 @injectable()
 export class Application implements IApplication {
 
-  private readonly userCreatedConsumer: UserCreatedConsumer;
-  private readonly orderCreatedConsumer: OrderCreatedConsumer;
-  private readonly orderUpdatedConsumer: OrderUpdatedConsumer;
+  private readonly userCreatedConsumer: IConsumer;
+  private readonly orderCreatedConsumer: IConsumer;
+  private readonly orderUpdatedConsumer: IConsumer;
 
 
   public constructor(
-    @inject(Identifiers.CONSUMER) @named('userCreated') userCreatedConsumer: UserCreatedConsumer,
-    @inject(Identifiers.CONSUMER) @named('orderCreated') orderCreatedConsumer: OrderCreatedConsumer,
-    @inject(Identifiers.CONSUMER) @named('orderUpdated') orderUpdatedConsumer: OrderUpdatedConsumer
+    @inject(Identifiers.CONSUMER) @named('userCreated') userCreatedConsumer: IConsumer,
+    @inject(Identifiers.CONSUMER) @named('orderCreated') orderCreatedConsumer: IConsumer,
+    @inject(Identifiers.CONSUMER) @named('orderUpdated') orderUpdatedConsumer: IConsumer
   ) {
     this.userCreatedConsumer = userCreatedConsumer;
     this.orderCreatedConsumer = orderCreatedConsumer;
